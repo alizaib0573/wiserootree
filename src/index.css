@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-grad:
+    radial-gradient(1200px 800px at 80% -10%, rgba(123,77,255,.28), transparent 60%),
+    radial-gradient(800px 600px at 10% 0%, rgba(180,140,255,.18), transparent 60%),
+    #0A0A0B;
+}
+
+html, body, #root { height: 100%; }
+body { background: var(--bg-grad); color: #EDEDED; }
+
+.section { @apply relative w-full py-10 md:py-16; }
+.container { @apply max-w-content mx-auto px-4; }
+
+.ink-card {
+  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  border: 1px solid rgba(255,255,255,.06);
+  box-shadow: 0 10px 40px rgba(0,0,0,.35);
+  border-radius: 16px;
+}
+
+.gradient-banner {
+  background: radial-gradient(120% 120% at 50% 10%, #7B4DFF 0%, #4520B0 55%, #17141D 100%);
+  border-radius: 16px;
+}
+
+/* fallback animated orb */
+.orb {
+  width: 280px; height: 280px; border-radius: 50%;
+  background:
+    radial-gradient(60% 60% at 40% 30%, rgba(180,140,255,.9), transparent 60%),
+    radial-gradient(70% 70% at 70% 80%, rgba(92,47,234,.8), transparent 60%),
+    radial-gradient(50% 50% at 30% 80%, rgba(255,255,255,.15), transparent 60%),
+    #1A1425;
+  filter: blur(.3px) saturate(120%);
+  animation: float 8s ease-in-out infinite;
+}
+@keyframes float { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-10px) } }
