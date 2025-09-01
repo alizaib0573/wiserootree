@@ -9,11 +9,11 @@ export default function Services() {
   return (
     <section id="services" className="section">
       <div className="container">
-        <div className="grid md:grid-cols-5 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
           {items.map((it) => (
             <div key={it.k} className="ink-card p-6">
-              <div className="text-white/50 text-xs uppercase tracking-wide">{it.k}</div>
-              <div className="mt-2 text-lg md:text-xl">{it.v}</div>
+              <div className="text-white/50 text-[11px] md:text-[12px] uppercase tracking-wide">{it.k}</div>
+              <div className="mt-2 text-[16px] md:text-[18px]">{it.v}</div>
             </div>
           ))}
         </div>

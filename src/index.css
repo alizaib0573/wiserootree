@@ -2,18 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
 :root {
   --bg-grad:
     radial-gradient(1200px 800px at 80% -10%, rgba(123,77,255,.28), transparent 60%),
     radial-gradient(800px 600px at 10% 0%, rgba(180,140,255,.18), transparent 60%),
     #0A0A0B;
 }
+body { background: var(--bg-grad); color: #EDEDED; margin: 0; }
 
-html, body, #root { height: 100%; }
-body { background: var(--bg-grad); color: #EDEDED; }
-
-.section { @apply relative w-full py-10 md:py-16; }
-.container { @apply max-w-content mx-auto px-4; }
+.section { @apply relative w-full py-12 md:py-16; }
+.container { @apply mx-auto px-4; max-width: 1200px; }
+@media (min-width: 1440px) { .container { max-width: 1320px; } }
 
 .ink-card {
   background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
@@ -27,7 +29,7 @@ body { background: var(--bg-grad); color: #EDEDED; }
   border-radius: 16px;
 }
 
-/* fallback animated orb */
+/* fallback animated orb (if an effect isn’t plugged yet) */
 .orb {
   width: 280px; height: 280px; border-radius: 50%;
   background:
@@ -39,3 +41,70 @@ body { background: var(--bg-grad); color: #EDEDED; }
   animation: float 8s ease-in-out infinite;
 }
 @keyframes float { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-10px) } }
+
+/* Figma overlay helper (toggle with ?overlay=1) */
+.overlay-img {
+  position: fixed; inset: 0; pointer-events: none; opacity: 0.45;
+  mix-blend-mode: difference; /* change to multiply/screen if needed */
+  object-fit: contain; width: 100%; height: 100%;
+  z-index: 50;
+}
+
+
+
+/* On-scroll typography (Codrops-like) */
+.reveal-line {
+  display: inline-block;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  font-size: clamp(28px, 7vw, 86px);
+  line-height: 1.02;
+  background: linear-gradient(90deg, #ffffff, #d9ccff 50%, #ffffff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.reveal-char {
+  display: inline-block;
+  transform: translateY(1.15em);
+  opacity: 0;
+  transition:
+    transform .55s cubic-bezier(.2,.6,.2,1),
+    opacity .55s;
+  transition-delay: calc(var(--d, 0s) + (var(--i) * 12ms));
+  will-change: transform, opacity;
+}
+.is-inview .reveal-char {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+
+/* On-scroll typography (Codrops-like) */
+.reveal-line {
+  display: inline-block;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  font-size: clamp(28px, 7vw, 86px);
+  line-height: 1.02;
+  background: linear-gradient(90deg, #ffffff, #d9ccff 50%, #ffffff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.reveal-char {
+  display: inline-block;
+  transform: translateY(1.15em);
+  opacity: 0;
+  transition:
+    transform .55s cubic-bezier(.2,.6,.2,1),
+    opacity .55s;
+  transition-delay: calc(var(--d, 0s) + (var(--i) * 12ms));
+  will-change: transform, opacity;
+}
+.is-inview .reveal-char {
+  transform: translateY(0);
+  opacity: 1;
+}
